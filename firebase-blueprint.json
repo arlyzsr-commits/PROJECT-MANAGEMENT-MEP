@@ -1,0 +1,220 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "MEP Project configuration and metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "company": { "type": "string" },
+        "location": { "type": "string" },
+        "projectType": { "type": "string" },
+        "department": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "company", "location"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account and role in MEP Project",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["MANAGER", "SUPERVISOR", "VIEWER"] },
+        "phone": { "type": "string" },
+        "company": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Building": {
+      "title": "Building",
+      "description": "Building or facility structure in resort",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "projectId": { "type": "string" },
+        "name": { "type": "string" },
+        "buildingType": { "type": "string" },
+        "zone": { "type": "string" },
+        "floorCount": { "type": "number" },
+        "description": { "type": "string" },
+        "pic": { "type": "string" },
+        "targetStartDate": { "type": "string" },
+        "targetFinishDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["Active", "Completed", "Pending", "Delayed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "projectId", "status"]
+    },
+    "WorkItem": {
+      "title": "WorkItem",
+      "description": "Master MEP work item with BOQ quantity and weight",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "projectId": { "type": "string" },
+        "buildingId": { "type": "string" },
+        "buildingName": { "type": "string" },
+        "area": { "type": "string" },
+        "room": { "type": "string" },
+        "category": { "type": "string", "enum": ["ELECTRICAL", "MECHANICAL", "PLUMBING", "ICT & ELV"] },
+        "subcategory": { "type": "string" },
+        "description": { "type": "string" },
+        "unit": { "type": "string" },
+        "boqQuantity": { "type": "number" },
+        "workWeight": { "type": "number" },
+        "completedQuantity": { "type": "number" },
+        "progressPercentage": { "type": "number" },
+        "plannedStart": { "type": "string" },
+        "plannedFinish": { "type": "string" },
+        "contractor": { "type": "string" },
+        "pic": { "type": "string" },
+        "status": { "type": "string", "enum": ["Not Started", "In Progress", "Completed", "Delayed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "projectId", "buildingId", "category", "boqQuantity", "workWeight"]
+    },
+    "DailyProgress": {
+      "title": "DailyProgress",
+      "description": "Daily site MEP work progress log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "reportId": { "type": "string" },
+        "projectId": { "type": "string" },
+        "workItemId": { "type": "string" },
+        "date": { "type": "string" },
+        "buildingId": { "type": "string" },
+        "buildingName": { "type": "string" },
+        "area": { "type": "string" },
+        "room": { "type": "string" },
+        "category": { "type": "string" },
+        "subcategory": { "type": "string" },
+        "contractor": { "type": "string" },
+        "pic": { "type": "string" },
+        "plannedQuantity": { "type": "number" },
+        "previousCumulativeQuantity": { "type": "number" },
+        "dailyCompletedQuantity": { "type": "number" },
+        "currentCumulativeQuantity": { "type": "number" },
+        "progressPercentage": { "type": "number" },
+        "manpower": { "type": "number" },
+        "equipment": { "type": "string" },
+        "weather": { "type": "string", "enum": ["Sunny", "Cloudy", "Rainy", "Heavy Rain"] },
+        "workDescription": { "type": "string" },
+        "issues": { "type": "string" },
+        "nextAction": { "type": "string" },
+        "targetDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["Draft", "Submitted", "Approved", "Rejected"] },
+        "submittedBy": { "type": "string" },
+        "approvedBy": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "projectId", "workItemId", "date", "dailyCompletedQuantity"]
+    },
+    "PhotoDocument": {
+      "title": "PhotoDocument",
+      "description": "Digital photo documentation with watermark metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "projectId": { "type": "string" },
+        "buildingId": { "type": "string" },
+        "buildingName": { "type": "string" },
+        "room": { "type": "string" },
+        "workItemId": { "type": "string" },
+        "category": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "date": { "type": "string" },
+        "photographer": { "type": "string" },
+        "workDescription": { "type": "string" },
+        "progress": { "type": "number" },
+        "remarks": { "type": "string" },
+        "pic": { "type": "string" },
+        "contractor": { "type": "string" },
+        "gpsCoordinates": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "projectId", "buildingId", "photoUrl"]
+    },
+    "Issue": {
+      "title": "Issue",
+      "description": "Outstanding MEP work item or site constraint",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "projectId": { "type": "string" },
+        "buildingId": { "type": "string" },
+        "buildingName": { "type": "string" },
+        "room": { "type": "string" },
+        "workItemId": { "type": "string" },
+        "description": { "type": "string" },
+        "priority": { "type": "string", "enum": ["Low", "Medium", "High", "Critical"] },
+        "responsiblePic": { "type": "string" },
+        "contractor": { "type": "string" },
+        "targetCompletion": { "type": "string" },
+        "actualCompletion": { "type": "string" },
+        "status": { "type": "string", "enum": ["Open", "In Progress", "Pending", "Resolved", "Closed"] },
+        "remarks": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "projectId", "buildingId", "description", "priority", "status"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Audit trail for system actions and data modifications",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "projectId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "actionType": { "type": "string" },
+        "collection": { "type": "string" },
+        "documentId": { "type": "string" },
+        "beforeData": { "type": "string" },
+        "afterData": { "type": "string" },
+        "details": { "type": "string" }
+      },
+      "required": ["id", "projectId", "userId", "actionType", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Project configuration documents"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles and assigned permissions"
+    },
+    "/buildings/{buildingId}": {
+      "schema": "Building",
+      "description": "Buildings and resort zones"
+    },
+    "/workItems/{workItemId}": {
+      "schema": "WorkItem",
+      "description": "Master MEP work items and BOQ records"
+    },
+    "/dailyProgress/{progressId}": {
+      "schema": "DailyProgress",
+      "description": "Daily MEP progress tracking logs"
+    },
+    "/photoDocuments/{photoId}": {
+      "schema": "PhotoDocument",
+      "description": "Site photos with watermark and technical metadata"
+    },
+    "/issues/{issueId}": {
+      "schema": "Issue",
+      "description": "Outstanding work items and site constraints"
+    },
+    "/auditLogs/{logId}": {
+      "schema": "AuditLog",
+      "description": "Audit logs of all progress and master changes"
+    }
+  }
+}

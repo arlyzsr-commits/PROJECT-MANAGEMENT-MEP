@@ -1,0 +1,6 @@
+{
+  "name": "MEP Project Control - Balak Resort",
+  "description": "Professional MEP (Mechanical, Electrical, Plumbing, ICT) project control and field execution management system for Balak Resort construction.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

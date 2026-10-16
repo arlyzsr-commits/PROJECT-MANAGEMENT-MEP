@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #080F1D;
+    --bg-sidebar: #101B2E;
+    --bg-card: #142238;
+    --electric-cyan: #00E5FF;
+    --electric-blue: #2979FF;
+    --electric-tosca: #00D8B4;
+    --text-primary: #F3F7FF;
+    --text-secondary: #94A8C2;
+    --warning: #FFB74D;
+    --critical: #FF526B;
+  }
+
+  body {
+    background-color: #080F1D;
+    color: #F3F7FF;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080F1D;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3352;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00E5FF;
+}
+
+/* Electric glow utilities */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+}
+.glow-cyan-sm {
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+.glow-blue {
+  box-shadow: 0 0 15px rgba(41, 121, 255, 0.25);
+}
+.glow-tosca {
+  box-shadow: 0 0 15px rgba(0, 216, 180, 0.25);
+}
+
+.border-electric {
+  border-color: rgba(0, 229, 255, 0.2);
+}
+.border-electric:hover {
+  border-color: rgba(0, 229, 255, 0.45);
+}
+
+/* Print utilities for clean PDF/print export */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
